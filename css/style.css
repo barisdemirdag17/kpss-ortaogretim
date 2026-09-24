@@ -1079,3 +1079,75 @@ body {
         padding: 20px 0;
     }
 }
+
+
+/* ===== QUIZ STYLES ===== */
+
+        .quiz-container { max-width: 900px; margin: 0 auto; padding: 24px; }
+        .quiz-header { text-align: center; margin-bottom: 32px; }
+        .quiz-header h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary); margin-bottom: 8px; }
+        .quiz-progress { display: flex; justify-content: space-between; align-items: center; background: var(--bg-light); padding: 16px 24px; border-radius: var(--radius-sm); margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+        .quiz-progress-item { text-align: center; }
+        .quiz-progress-item .label { font-size: 0.75rem; color: var(--text-light); }
+        .quiz-progress-item .value { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+        .quiz-progress-item .value.correct { color: var(--success); }
+        .quiz-progress-item .value.wrong { color: var(--danger); }
+        .quiz-progress-item .value.blank { color: var(--warning); }
+        .question-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 28px; margin-bottom: 20px; transition: var(--transition); }
+        .question-card:hover { box-shadow: var(--shadow); }
+        .question-number { display: inline-block; background: var(--primary); color: white; padding: 4px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; margin-bottom: 12px; }
+        .question-text { font-size: 1.05rem; font-weight: 600; margin-bottom: 20px; line-height: 1.7; }
+        .question-category { font-size: 0.75rem; color: var(--accent); font-weight: 600; margin-bottom: 8px; display: block; }
+        .options-grid { display: grid; gap: 10px; }
+        .option-btn { display: flex; align-items: center; gap: 12px; padding: 14px 20px; background: var(--bg-light); border: 2px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition); font-size: 0.95rem; font-family: inherit; width: 100%; text-align: left; }
+        .option-btn:hover { border-color: var(--accent); background: rgba(0, 188, 212, 0.05); }
+        .option-btn.selected { border-color: var(--primary); background: rgba(26, 35, 126, 0.08); }
+        .option-btn.correct-answer { border-color: var(--success); background: rgba(76, 175, 80, 0.1); }
+        .option-btn.wrong-answer { border-color: var(--danger); background: rgba(244, 67, 54, 0.1); }
+        .option-btn:disabled { cursor: not-allowed; opacity: 0.7; }
+        .option-letter { width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; transition: var(--transition); }
+        .option-btn.selected .option-letter { background: var(--primary); color: white; }
+        .option-btn.correct-answer .option-letter { background: var(--success); color: white; }
+        .option-btn.wrong-answer .option-letter { background: var(--danger); color: white; }
+        .option-btn.correct-answer { opacity: 1; }
+        .navigation-buttons { display: flex; justify-content: space-between; margin-top: 24px; gap: 12px; }
+        .btn { padding: 12px 24px; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        /* Result Section */
+        .result-section { display: none; background: var(--bg-white); border-radius: var(--radius); box-shadow: var(--shadow-lg); padding: 40px; max-width: 700px; margin: 40px auto; text-align: center; }
+        .result-section.active { display: block; animation: fadeInUp 0.5s ease; }
+        .result-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary); margin-bottom: 24px; }
+        .result-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+        .result-stat { padding: 20px; border-radius: var(--radius-sm); }
+        .result-stat.correct { background: rgba(76, 175, 80, 0.1); border: 1px solid rgba(76, 175, 80, 0.3); }
+        .result-stat.wrong { background: rgba(244, 67, 54, 0.1); border: 1px solid rgba(244, 67, 54, 0.3); }
+        .result-stat.blank { background: rgba(255, 152, 0, 0.1); border: 1px solid rgba(255, 152, 0, 0.3); }
+        .result-stat.net { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; }
+        .result-stat.points { background: linear-gradient(135deg, var(--accent), var(--accent-light)); color: white; }
+        .result-stat .stat-label { font-size: 0.85rem; opacity: 0.8; margin-bottom: 4px; }
+        .result-stat .stat-value { font-size: 2rem; font-weight: 900; }
+        .result-message { font-size: 1.2rem; margin-bottom: 24px; padding: 16px; background: var(--bg-light); border-radius: var(--radius-sm); }
+        .result-breakdown { text-align: left; margin-top: 24px; padding: 20px; background: var(--bg-light); border-radius: var(--radius-sm); }
+        .result-breakdown h4 { margin-bottom: 12px; color: var(--primary); }
+        .breakdown-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        
+        .start-screen { text-align: center; padding: 60px 24px; }
+        .start-screen h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary); margin-bottom: 16px; }
+        .start-screen p { color: var(--text-light); font-size: 1.1rem; margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .start-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+        .start-info-item { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; }
+        .start-info-item .info-icon { font-size: 2rem; margin-bottom: 8px; }
+        .start-info-item h4 { color: var(--primary); margin-bottom: 4px; }
+        .start-info-item p { font-size: 0.85rem; color: var(--text-light); margin: 0; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .result-stats { grid-template-columns: 1fr; }
+            .quiz-progress { flex-direction: column; }
+        }
+    

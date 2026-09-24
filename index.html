@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KPSS Ortaöğretim - Sınav Rehberi ve Konu Dağılımları</title>
+    <title>KPSS Ortaöğretim - Rehber, Deneme Sınavı ve Puan Hesaplama</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📚%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +29,7 @@
                 <li><a href="#soru-tipleri">Soru Türleri</a></li>
                 <li><a href="#calisma-planı">Çalışma Planı</a></li>
                 <li><a href="#puan-hesaplama">Puan Hesaplama</a></li>
-                <li><a href="test.html">📝 Deneme Sınavı</a></li>
+                <li><a href="#deneme-sinavi">📝 Deneme Sınavı</a></li>
                 <li><a href="#kaynaklar">Kaynaklar</a></li>
             </ul>
         </div>
@@ -510,7 +510,7 @@
                 <div class="cta-badge">📝 SİNAMAYA HAZIR MISIN?</div>
                 <h2 class="cta-title">KPSS Ortaöğretim Deneme Sınavı</h2>
                 <p class="cta-desc">20 soruluk KPSS Ortaöğretim sınavına benzer sorulardan oluşan deneme sınavını çözmeyi dene. Doğru, yanlış, boş soruların ve net puanın otomatik hesaplanır.</p>
-                <a href="test.html" class="btn btn-primary" style="font-size: 1.15rem; padding: 16px 48px;">📝 Deneme Sınavını Başlat</a>
+                <a href="#deneme-sinavi" class="btn btn-primary" style="font-size: 1.15rem; padding: 16px 48px;">📝 Deneme Sınavını Başlat</a>
             </div>
         </div>
     </section>
@@ -658,5 +658,1025 @@
     </footer>
 
     <script src="js/main.js"></script>
+<!-- Start Screen -->
+    <div class="quiz-container" id="startScreen">
+        <div class="start-screen">
+            <h2>📝 KPSS Ortaöğretim Deneme Sınavı</h2>
+            <p>Konu dağılımına uygun olarak hazırlanmış 20 soruluk deneme sınavı. Zamanı dolduğunda veya bitirdiğinde sonuçları göreceksin.</p>
+            <div class="start-info">
+                <div class="start-info-item">
+                    <div class="info-icon">⏱️</div>
+                    <h4>20 Soru</h4>
+                    <p>Her konu alt bölümden sorular</p>
+                </div>
+                <div class="start-info-item">
+                    <div class="info-icon">📋</div>
+                    <h4>5 Konu</h4>
+                    <p>Türkçe, Matematik, Tarih, Coğrafya, Vatandaşlık</p>
+                </div>
+                <div class="start-info-item">
+                    <div class="info-icon">📊</div>
+                    <h4>Otomatik Değerlendirme</h4>
+                    <p>Doğru, yanlış, boş, net ve puan</p>
+                </div>
+                <div class="start-info-item">
+                    <div class="info-icon">🎯</div>
+                    <h4>KPSS Uyumu</h4>
+                    <p>Ortaöğretim seviyesi sorular</p>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="startQuiz()" style="font-size: 1.1rem; padding: 16px 40px;">Sınavı Başlat →</button>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div class="quiz-container" id="quizScreen" style="display:none;">
+        <div class="quiz-header">
+            <h2>📝 Deneme Sınavı</h2>
+        </div>
+        <div class="quiz-progress">
+            <div class="quiz-progress-item">
+                <div class="label">Soru</div>
+                <div class="value" id="progressCurrent">1</div>
+            </div>
+            <div class="quiz-progress-item">
+                <div class="label">Doğru</div>
+                <div class="value correct" id="progressCorrect">0</div>
+            </div>
+            <div class="quiz-progress-item">
+                <div class="label">Yanlış</div>
+                <div class="value wrong" id="progressWrong">0</div>
+            </div>
+            <div class="quiz-progress-item">
+                <div class="label">Boş</div>
+                <div class="value blank" id="progressBlank">0</div>
+            </div>
+            <div class="quiz-progress-item">
+                <div class="label">Kalan</div>
+                <div class="value" id="progressRemaining">19</div>
+            </div>
+        </div>
+        <div id="questionArea"></div>
+        <div class="navigation-buttons">
+            <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()" disabled>← Önceki</button>
+            <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Sonraki →</button>
+        </div>
+    </div>
+
+    <!-- Result Screen -->
+    <div class="quiz-container">
+        <div class="result-section" id="resultSection">
+            <h2 class="result-title">📊 Sınav Sonuçları</h2>
+            <div class="result-stats">
+                <div class="result-stat correct">
+                    <div class="stat-label">✅ Doğru</div>
+                    <div class="stat-value" id="resCorrect">0</div>
+                </div>
+                <div class="result-stat wrong">
+                    <div class="stat-label">❌ Yanlış</div>
+                    <div class="stat-value" id="resWrong">0</div>
+                </div>
+                <div class="result-stat blank">
+                    <div class="stat-label">⬜ Boş</div>
+                    <div class="stat-value" id="resBlank">0</div>
+                </div>
+                <div class="result-stat net">
+                    <div class="stat-label">📐 Net</div>
+                    <div class="stat-value" id="resNet">0</div>
+                </div>
+                <div class="result-stat points">
+                    <div class="stat-label">⭐ Puan</div>
+                    <div class="stat-value" id="resPoints">0</div>
+                </div>
+                <div class="result-stat">
+                    <div class="stat-label">📋 Genel Kültük Net</div>
+                    <div class="stat-value" id="resGenelKultuk">0</div>
+                </div>
+            </div>
+            <div class="result-message" id="resMessage"></div>
+            <div class="result-breakdown">
+                <h4>📈 Konu Bazlı Detay</h4>
+                <div id="breakdownArea"></div>
+            </div>
+            <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="retryQuiz()">🔄 Tekrar Dene</button>
+                <a href="index.html" class="btn btn-secondary">📚 Ana Sayfaya</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== QUESTIONS =====
+        const questions = [
+            // TURKCE
+            {
+                category: "Türkçe",
+                question: "『Güneş doğarken kuşlar uçmaya başlar.』 Cümlede zaman belirten ifade aşağıdakilerden hangisidir?",
+                options: ["Güneş doğarken", "kuşlar", "uçmaya başlar", "yukarıdakilerin hiçbiri"],
+                answer: 0
+            },
+            {
+                category: "Türkçe",
+                question: "『Kitap kütüphanede okudum.』 Cümlesinde köşeli ayraçların görevi nedir?",
+                options: ["Özne belirlemek", "Yer belirlemek", "Zaman belirlemek", "Nitelendirme yapmak"],
+                answer: 1
+            },
+            {
+                category: "Türkçe",
+                question: "『Zamanın önünden geçenler esirgedir.』 Bu sözü kim söylemiştir?",
+                options: ["İsmet İnönü", "Mustafa Kemal Atatürk", "Ziya Gökalp", "Yakup Kadri Karaosmanoğlu"],
+                answer: 1
+            },
+            {
+                category: "Türkçe",
+                question: "『Eğer Yaşlıysa, Yaşlılık Çeşitleridir.』 Bu kitabın yazarı kimdir?",
+                options: ["Orhan Pamuk", "Ahmet Hamdi Tanpınar", "Yasar Kemal", "Sabahattin Ali"],
+                answer: 1
+            },
+            {
+                category: "Türkçe",
+                question: "『Gitmek isterdim ama vakitim yok.』 Cümlesinin anlamı aşağıdakilerden hangisidir?",
+                options: ["Gitmek istiyorum ve vaktim var", "Gitmek istiyorum amak vaktim yok", "Gitmek istemiyorum", "Vaktim yok"],
+                answer: 1
+            },
+            {
+                category: "Sözel Mantık",
+                question: "Tüm mühendisler diplomalıdır. Bazı diplomalılar mühendislerdir. Bu cümleden hangisi doğru çıkar?",
+                options: ["Tüm diplomalılar mühendislerdir", "Bazı mühendisler diplomalıdır", "Hiçbir diplomalı mühendis değildir", "Mühendis olanlar diplomat olabilir"],
+                answer: 1
+            },
+            {
+                category: "Sözel Mantık",
+                question: "E: 'Her kalem kalıptır' ve F: 'Bazı kalıplar kalemlerdir' önermelerinden hangisi doğrudur?",
+                options: ["E her zaman F'yi içerir", "F her zaman E'yi içerir", "E ve F birbirini dışlar", "E ve F aynı önermedir"],
+                answer: 0
+            },
+            {
+                category: "Sözel Mantık",
+                question: "A, B'den büyüktür. B, C'den küçüktür. C, D'den büyüktür. Buna göre hangisi doğrudur?",
+                options: ["A > D", "D > A", "A > C", "D > B"],
+                answer: 2
+            },
+            {
+                category: "Sözel Mantık",
+                question: "'Some students are lazy. All lazy people fail.' ifadesinden hangi sonuca varılır?",
+                options: ["All students fail", "Some students fail", "No students fail", "All lazy students pass"],
+                answer: 1
+            },
+            
+            // MATEMATİK
+            {
+                category: "Matematik",
+                question: "Bir sayının 3 katının 5 fazlası 32'dir. Bu sayı kaçtır?",
+                options: ["7", "9", "11", "27"],
+                answer: 0
+            },
+            {
+                category: "Matematik",
+                question: "Bir araba 4 saatte 280 km alır. Aynı hızla 7 saatte kaç km yapar?",
+                options: ["420 km", "490 km", "560 km", "350 km"],
+                answer: 1
+            },
+            {
+                category: "Matematik",
+                question: "30 kişilik bir sınıfta kızların sayısı erkeklerin 2 katıdır. Kaç erkek vardır?",
+                options: ["10", "15", "20", "12"],
+                answer: 0
+            },
+            {
+                category: "Matematik",
+                question: "Bir ürün %20 indirimle 80 TL'ye satılıyor. Eski fiyatı kaç TL'dir?",
+                options: ["96 TL", "100 TL", "120 TL", "64 TL"],
+                answer: 1
+            },
+            {
+                category: "Matematik",
+                question: "Sayısal mantık: 2, 6, 12, 20, 30, ? dizisinde soru işareti kaçtır?",
+                options: ["40", "42", "44", "36"],
+                answer: 1
+            },
+            {
+                category: "Matematik",
+                question: "Bir kutu 12 cm x 8 cm x 5 cm ölçülerindedir. Hacmi kaç cm³'tür?",
+                options: ["480", "240", "360", "520"],
+                answer: 0
+            },
+            {
+                category: "Matematik",
+                question: "345 sayısındaki 4'ün basamak değeri nedir?",
+                options: ["4", "40", "400", "4000"],
+                answer: 1
+            },
+            {
+                category: "Matematik",
+                question: "64'un kare kökü kaçtır?",
+                options: ["8", "32", "16", "4"],
+                answer: 0
+            },
+            {
+                category: "Matematik",
+                question: "25% = ?/4 = ? (bolük olarak)",
+                options: ["1/4", "1/2", "3/4", "1/5"],
+                answer: 0
+            },
+            {
+                category: "Matematik",
+                question: "Bir işi A tek başına 6 saatte, B tek başına 3 saatte yapar. Birlikte kaç saatte yaparlar?",
+                options: ["2 saat", "1.5 saat", "1 saat", "4 saat"],
+                answer: 0
+            },
+            
+            // TARİH
+            {
+                category: "Tarih",
+                question: "Osmanlı İmparatorluğu'nun kuruluş yılı kaçtır?",
+                options: ["1299", "1453", "1517", "1326"],
+                answer: 0
+            },
+            {
+                category: "Tarih",
+                question: "Fatih Sultan Mehmet'in İstanbul'u fethi hangi yılda olmuştur?",
+                options: ["1453", "1444", "1461", "1481"],
+                answer: 0
+            },
+            {
+                category: "Tarih",
+                question: "TBMM'nin ilk toplantısı hangi tarihte yapılmıştır?",
+                options: ["23 Nisan 1920", "29 Ekim 1923", "1 Mayıs 1920", "18 Eylül 1922"],
+                answer: 0
+            },
+            {
+                category: "Tarih",
+                question: "Kurtuluş Savaşı'nın başlangıç tarihi?",
+                options: ["19 Mayıs 1919", "23 Nisan 1920", "10 Ağustos 1920", "4 Eylül 1922"],
+                answer: 0
+            },
+            {
+                category: "Tarih",
+                question: "İstiklal Bayıramı hangi tarihlerde kutlanır?",
+                options: ["23 Nisan ve 19 Mayıs", "29 Ekim ve 10 Kasım", "23 Nisan ve 29 Ekim", "1 Mayıs ve 15 Temmuz"],
+                answer: 2
+            },
+            {
+                category: "Tarih",
+                question: "Atatürk'ün 'Kadınlara Hak Ve Yetkileri Hakkındaki Kanun'unu çıkardığı yıl?",
+                options: ["1926", "1930", "1934", "1924"],
+                answer: 2
+            },
+            {
+                category: "Tarih",
+                question: "Şeyh Said Ayaklanması hangi yılda olmuştur?",
+                options: ["1924", "1925", "1926", "1927"],
+                answer: 1
+            },
+            {
+                category: "Tarih",
+                question: "Sivas Kongresi hangi tarihte yapılmıştır?",
+                options: ["4 Eylül 1919", "19 Mayıs 1919", "23 Nisan 1920", "1 Kasım 1919"],
+                answer: 0
+            },
+            
+            // COĞRAFYA
+            {
+                category: "Coğrafya",
+                question: "Türkiye'nin en uzun nehri hangisidir?",
+                options: ["Fırat", "Kızılırmak", "Marmara", "Sakarya"],
+                answer: 1
+            },
+            {
+                category: "Coğrafya",
+                question: "Türkiye'de en yüksek dağ hangisidir?",
+                options: ["Demir Kapı", "Kaçkar Dağı", "Uludağ", "Erciyes Dağı"],
+                answer: 1
+            },
+            {
+                category: "Coğrafya",
+                question: "Akdeniz iklimini Türkiye'de hangi bölge yaşar?",
+                options: ["Karadeniz kıyıları", "Ege ve Akdeniz bölgeleri", "İç Anadolu", "Doğu Anadolu"],
+                answer: 1
+            },
+            {
+                category: "Coğrafya",
+                question: "Türkiye'nin en büyük gölü hangisidir?",
+                options: ["Van Gölü", "Tuz Gölü", "Eğirdir Gölü", "Büyükçekmece Gölü"],
+                answer: 0
+            },
+            {
+                category: "Coğrafya",
+                question: "Anadolu coğrafyası bakımından hangi bölge en fazla tarımsal üretim yapar?",
+                options: ["Doğu Anadolu", "Ege Bölgesi", "Karadeniz Bölgesi", "İç Anadolu"],
+                answer: 1
+            },
+            {
+                category: "Coğrafya",
+                question: "Türkiye denizden kaç kilometre uzaktadır?",
+                options: ["7200 km", "8143 km", "5000 km", "9600 km"],
+                answer: 1
+            },
+            
+            // VATANDAŞLIK
+            {
+                category: "Vatandaşlık",
+                question: "Türk Anayasası'nın kabul tarihi?",
+                options: ["7 Ocak 1924", "20 Nisan 1924", "29 Ekim 1923", "1 Kasım 1922"],
+                answer: 0
+            },
+            {
+                category: "Vatandaşlık",
+                question: "Anayasaya göre Türk vatandaşı kim olabilir?",
+                options: ["Doğum yeri Türkiye'de olan herkes", "Anayasa ve yasalara uygun olan herkes", "Türkleşmiş herkes", "İstanbul'da yaşayan herkes"],
+                answer: 1
+            },
+            {
+                category: "Vatandaşlık",
+                question: "Türkiye'de yasal seçme ve seçilmeye hak kaç yaştan itibaren vardır?",
+                options: ["18", "21", "16", "20"],
+                answer: 0
+            },
+            {
+                category: "Vatandaşlık",
+                question: "TBMM'de yasama yetkisi hangi kurulda vardır?",
+                options: ["Bakanlar Kurulu", "TBMM Meclisi", "Cumhurbaşkanlığı", "Danıştay"],
+                answer: 1
+            },
+            {
+                category: "Vatandaşlık",
+                question: "Anayasa Haksı'nın temel prensibi hangisidir?",
+                options: ["Haksızlık", "Eşitlik ve Haksızlık", "Sadece Özgürlük", "Sadece Adalet"],
+                answer: 1
+            }
+        ];
+
+        // ===== QUIZ STATE =====
+        let currentQuestion = 0;
+        let answers = new Array(questions.length).fill(-1);
+        let timer = null;
+        let timeLeft = 1800; // 30 minutes
+
+        // ===== START QUIZ =====
+        function startQuiz() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'block';
+            loadQuestion();
+            startTimer();
+        }
+
+        // ===== LOAD QUESTION =====
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            const area = document.getElementById('questionArea');
+            
+            let optionsHtml = '';
+            const letters = ['A', 'B', 'C', 'D', 'E'];
+            q.options.forEach((opt, i) => {
+                let cls = '';
+                if (answers[currentQuestion] === i) cls = 'selected';
+                const isAnswered = answers[currentQuestion] !== -1;
+                optionsHtml += `
+                    <button class="option-btn ${cls}" onclick="selectAnswer(${i})" id="opt_${i}" ${isAnswered ? 'disabled' : ''}>
+                        <span class="option-letter">${letters[i]}</span>
+                        <span>${opt}</span>
+                    </button>
+                `;
+            });
+            
+            area.innerHTML = `
+                <div class="question-card">
+                    <span class="question-category">${q.category}</span>
+                    <span class="question-number">Soru ${currentQuestion + 1}/${questions.length}</span>
+                    <div class="question-text">${q.question}</div>
+                    <div class="options-grid">${optionsHtml}</div>
+                </div>
+            `;
+            
+            updateProgress();
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            document.getElementById('nextBtn').textContent = currentQuestion === questions.length - 1 ? 'Bitir →' : 'Sonraki →';
+        }
+
+        // ===== SELECT ANSWER =====
+        function selectAnswer(index) {
+            answers[currentQuestion] = index;
+            loadQuestion();
+        }
+
+        // ===== NAVIGATION =====
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        // ===== TIMER =====
+        function startTimer() {
+            timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    finishQuiz();
+                }
+            }, 1000);
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // ===== UPDATE PROGRESS =====
+        function updateProgress() {
+            document.getElementById('progressCurrent').textContent = currentQuestion + 1;
+            document.getElementById('progressCorrect').textContent = answers.filter(a => a !== -1 && questions[a].answer === a).length;
+            document.getElementById('progressWrong').textContent = answers.filter(a => a !== -1 && questions[a].answer !== a).length;
+            document.getElementById('progressBlank').textContent = answers.filter(a => a === -1).length;
+            document.getElementById('progressRemaining').textContent = questions.length - currentQuestion - 1;
+            document.getElementById('progressRemaining').textContent = questions.length - currentQuestion - 1;
+        }
+
+        // ===== FINISH QUIZ =====
+        function finishQuiz() {
+            if (timer) clearInterval(timer);
+            document.getElementById('quizScreen').style.display = 'none';
+            showResults();
+        }
+
+        // ===== CALCULATE AND SHOW RESULTS =====
+        function showResults() {
+            let correct = 0, wrong = 0, blank = 0;
+            let genelKultukCorrect = 0;
+            let genelKultukTotal = 0;
+            let genelYetenekCorrect = 0;
+            let genelYetenekTotal = 0;
+            
+            const categoryStats = {};
+            
+            answers.forEach((ans, i) => {
+                const q = questions[i];
+                if (!categoryStats[q.category]) categoryStats[q.category] = { correct: 0, total: 0 };
+                categoryStats[q.category].total++;
+                
+                if (ans === -1) {
+                    blank++;
+                } else if (ans === q.answer) {
+                    correct++;
+                    categoryStats[q.category].correct++;
+                    if (['Tarih', 'Coğrafya', 'Vatandaşlık'].includes(q.category)) {
+                        genelKultukCorrect++;
+                    }
+                    genelKultukTotal += ['Tarih', 'Coğrafya', 'Vatandaşlık'].includes(q.category) ? 1 : 0;
+                    genelYetenekCorrect += ['Türkçe', 'Sözel Mantık', 'Matematik'].includes(q.category) ? 1 : 0;
+                } else {
+                    wrong++;
+                }
+            });
+            
+            // KPSS scoring system:
+            // Net = Doğru - (Yanlış / 4)
+            // Genel Yetenek: Türkçe + Matematik + Geometri + Sözel Mantık = ~57 soru
+            // Genel Kültür: Tarih + Coğrafya + Vatandaşlık + Güncel = ~60 soru
+            const genelYetenekNet = genelYetenekCorrect - (wrong * (genelYetenekTotal > 0 ? genelYetenekTotal / (genelYetenekCorrect + wrong + blank) : 0));
+            const genelKultukNet = genelKultukCorrect - Math.floor(wrong * 0.4);
+            
+            // More accurate calculation
+            let genelYetenekDo = 0, genelYetenekYan = 0, genelKultukDo = 0, genelKultukYan = 0, genelKultukBos = 0;
+            answers.forEach((ans, i) => {
+                const q = questions[i];
+                if (['Türkçe', 'Matematik', 'Sözel Mantık'].includes(q.category)) {
+                    if (ans === q.answer) genelYetenekDo++;
+                    else if (ans !== -1) genelYetenekYan++;
+                } else {
+                    genelKultukTotal++;
+                    if (ans === q.answer) genelKultukDo++;
+                    else if (ans !== -1) genelKultukYan++;
+                    else genelKultukBos++;
+                }
+            });
+            
+            const genelYetenekNet2 = genelYetenekDo - (genelYetenekYan / 4);
+            const genelKultukNet2 = genelKultukDo - (genelKultukYan / 4);
+            const toplamNet = genelYetenekNet2 + genelKultukNet2;
+            const toplamPuan = Math.round(toplamNet * (100 / Math.min(answers.length, 120)));
+            const toplamSkor = Math.round(toplamNet);
+            
+            // Update result display
+            document.getElementById('resCorrect').textContent = correct;
+            document.getElementById('resWrong').textContent = wrong;
+            document.getElementById('resBlank').textContent = blank;
+            document.getElementById('resNet').textContent = toplamNet.toFixed(2);
+            document.getElementById('resPoints').textContent = toplamSkor;
+            document.getElementById('resGenelKultuk').textContent = Math.round(genelKultukNet2).toFixed(1);
+            
+            let message = '';
+            if (toplamSkor >= 80) message = '👑 Çok Başarılı! Bu puanla kamu kurumlarına girebilirsiniz.';
+            else if (toplamSkor >= 60) message = '🌟 İyi Başarı! Konuşulabilir bir puan.';
+            else if (toplamSkor >= 40) message = '📈 Orta Başarı. Daha Çalışmalı!';
+            else if (toplamSkor >= 20) message = '📚 Gelişim Aşamasında. Zorlanmaya devamin!';
+            else message = '💪 Zorlanmaya Devam Et! Tekrar edip daha iyi sonuç al!';
+            
+            document.getElementById('resMessage').textContent = message;
+            
+            // Breakdown
+            let breakdownHtml = '';
+            for (const [cat, stats] of Object.entries(categoryStats)) {
+                const pct = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
+                breakdownHtml += `
+                    <div class="breakdown-item">
+                        <span>${cat}</span>
+                        <span>${stats.correct}/${stats.total} doğru (%${pct})</span>
+                    </div>
+                `;
+            }
+            document.getElementById('breakdownArea').innerHTML = breakdownHtml;
+            
+            document.getElementById('resultSection').classList.add('active');
+        }
+
+        // ===== RETRY =====
+        function retryQuiz() {
+            currentQuestion = 0;
+            answers = new Array(questions.length).fill(-1);
+            timeLeft = 1800;
+            document.getElementById('resultSection').classList.remove('active');
+            startQuiz();
+        }
+
+        // ===== KEYBOARD NAV =====
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('quizScreen').style.display !== 'none') {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextQuestion();
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevQuestion();
+                if (e.key >= '1' && e.key <= '5') selectAnswer(parseInt(e.key) - 1);
+            }
+        });
+    </script>
+
+<script>
+
+        // ===== QUESTIONS =====
+        const questions = [
+            // TURKCE
+            {
+                category: "Türkçe",
+                question: "『Güneş doğarken kuşlar uçmaya başlar.』 Cümlede zaman belirten ifade aşağıdakilerden hangisidir?",
+                options: ["Güneş doğarken", "kuşlar", "uçmaya başlar", "yukarıdakilerin hiçbiri"],
+                answer: 0
+            },
+            {
+                category: "Türkçe",
+                question: "『Kitap kütüphanede okudum.』 Cümlesinde köşeli ayraçların görevi nedir?",
+                options: ["Özne belirlemek", "Yer belirlemek", "Zaman belirlemek", "Nitelendirme yapmak"],
+                answer: 1
+            },
+            {
+                category: "Türkçe",
+                question: "『Zamanın önünden geçenler esirgedir.』 Bu sözü kim söylemiştir?",
+                options: ["İsmet İnönü", "Mustafa Kemal Atatürk", "Ziya Gökalp", "Yakup Kadri Karaosmanoğlu"],
+                answer: 1
+            },
+            {
+                category: "Türkçe",
+                question: "『Eğer Yaşlıysa, Yaşlılık Çeşitleridir.』 Bu kitabın yazarı kimdir?",
+                options: ["Orhan Pamuk", "Ahmet Hamdi Tanpınar", "Yasar Kemal", "Sabahattin Ali"],
+                answer: 1
+            },
+            {
+                category: "Türkçe",
+                question: "『Gitmek isterdim ama vakitim yok.』 Cümlesinin anlamı aşağıdakilerden hangisidir?",
+                options: ["Gitmek istiyorum ve vaktim var", "Gitmek istiyorum amak vaktim yok", "Gitmek istemiyorum", "Vaktim yok"],
+                answer: 1
+            },
+            {
+                category: "Sözel Mantık",
+                question: "Tüm mühendisler diplomalıdır. Bazı diplomalılar mühendislerdir. Bu cümleden hangisi doğru çıkar?",
+                options: ["Tüm diplomalılar mühendislerdir", "Bazı mühendisler diplomalıdır", "Hiçbir diplomalı mühendis değildir", "Mühendis olanlar diplomat olabilir"],
+                answer: 1
+            },
+            {
+                category: "Sözel Mantık",
+                question: "E: 'Her kalem kalıptır' ve F: 'Bazı kalıplar kalemlerdir' önermelerinden hangisi doğrudur?",
+                options: ["E her zaman F'yi içerir", "F her zaman E'yi içerir", "E ve F birbirini dışlar", "E ve F aynı önermedir"],
+                answer: 0
+            },
+            {
+                category: "Sözel Mantık",
+                question: "A, B'den büyüktür. B, C'den küçüktür. C, D'den büyüktür. Buna göre hangisi doğrudur?",
+                options: ["A > D", "D > A", "A > C", "D > B"],
+                answer: 2
+            },
+            {
+                category: "Sözel Mantık",
+                question: "'Some students are lazy. All lazy people fail.' ifadesinden hangi sonuca varılır?",
+                options: ["All students fail", "Some students fail", "No students fail", "All lazy students pass"],
+                answer: 1
+            },
+            
+            // MATEMATİK
+            {
+                category: "Matematik",
+                question: "Bir sayının 3 katının 5 fazlası 32'dir. Bu sayı kaçtır?",
+                options: ["7", "9", "11", "27"],
+                answer: 0
+            },
+            {
+                category: "Matematik",
+                question: "Bir araba 4 saatte 280 km alır. Aynı hızla 7 saatte kaç km yapar?",
+                options: ["420 km", "490 km", "560 km", "350 km"],
+                answer: 1
+            },
+            {
+                category: "Matematik",
+                question: "30 kişilik bir sınıfta kızların sayısı erkeklerin 2 katıdır. Kaç erkek vardır?",
+                options: ["10", "15", "20", "12"],
+                answer: 0
+            },
+            {
+                category: "Matematik",
+                question: "Bir ürün %20 indirimle 80 TL'ye satılıyor. Eski fiyatı kaç TL'dir?",
+                options: ["96 TL", "100 TL", "120 TL", "64 TL"],
+                answer: 1
+            },
+            {
+                category: "Matematik",
+                question: "Sayısal mantık: 2, 6, 12, 20, 30, ? dizisinde soru işareti kaçtır?",
+                options: ["40", "42", "44", "36"],
+                answer: 1
+            },
+            {
+                category: "Matematik",
+                question: "Bir kutu 12 cm x 8 cm x 5 cm ölçülerindedir. Hacmi kaç cm³'tür?",
+                options: ["480", "240", "360", "520"],
+                answer: 0
+            },
+            {
+                category: "Matematik",
+                question: "345 sayısındaki 4'ün basamak değeri nedir?",
+                options: ["4", "40", "400", "4000"],
+                answer: 1
+            },
+            {
+                category: "Matematik",
+                question: "64'un kare kökü kaçtır?",
+                options: ["8", "32", "16", "4"],
+                answer: 0
+            },
+            {
+                category: "Matematik",
+                question: "25% = ?/4 = ? (bolük olarak)",
+                options: ["1/4", "1/2", "3/4", "1/5"],
+                answer: 0
+            },
+            {
+                category: "Matematik",
+                question: "Bir işi A tek başına 6 saatte, B tek başına 3 saatte yapar. Birlikte kaç saatte yaparlar?",
+                options: ["2 saat", "1.5 saat", "1 saat", "4 saat"],
+                answer: 0
+            },
+            
+            // TARİH
+            {
+                category: "Tarih",
+                question: "Osmanlı İmparatorluğu'nun kuruluş yılı kaçtır?",
+                options: ["1299", "1453", "1517", "1326"],
+                answer: 0
+            },
+            {
+                category: "Tarih",
+                question: "Fatih Sultan Mehmet'in İstanbul'u fethi hangi yılda olmuştur?",
+                options: ["1453", "1444", "1461", "1481"],
+                answer: 0
+            },
+            {
+                category: "Tarih",
+                question: "TBMM'nin ilk toplantısı hangi tarihte yapılmıştır?",
+                options: ["23 Nisan 1920", "29 Ekim 1923", "1 Mayıs 1920", "18 Eylül 1922"],
+                answer: 0
+            },
+            {
+                category: "Tarih",
+                question: "Kurtuluş Savaşı'nın başlangıç tarihi?",
+                options: ["19 Mayıs 1919", "23 Nisan 1920", "10 Ağustos 1920", "4 Eylül 1922"],
+                answer: 0
+            },
+            {
+                category: "Tarih",
+                question: "İstiklal Bayıramı hangi tarihlerde kutlanır?",
+                options: ["23 Nisan ve 19 Mayıs", "29 Ekim ve 10 Kasım", "23 Nisan ve 29 Ekim", "1 Mayıs ve 15 Temmuz"],
+                answer: 2
+            },
+            {
+                category: "Tarih",
+                question: "Atatürk'ün 'Kadınlara Hak Ve Yetkileri Hakkındaki Kanun'unu çıkardığı yıl?",
+                options: ["1926", "1930", "1934", "1924"],
+                answer: 2
+            },
+            {
+                category: "Tarih",
+                question: "Şeyh Said Ayaklanması hangi yılda olmuştur?",
+                options: ["1924", "1925", "1926", "1927"],
+                answer: 1
+            },
+            {
+                category: "Tarih",
+                question: "Sivas Kongresi hangi tarihte yapılmıştır?",
+                options: ["4 Eylül 1919", "19 Mayıs 1919", "23 Nisan 1920", "1 Kasım 1919"],
+                answer: 0
+            },
+            
+            // COĞRAFYA
+            {
+                category: "Coğrafya",
+                question: "Türkiye'nin en uzun nehri hangisidir?",
+                options: ["Fırat", "Kızılırmak", "Marmara", "Sakarya"],
+                answer: 1
+            },
+            {
+                category: "Coğrafya",
+                question: "Türkiye'de en yüksek dağ hangisidir?",
+                options: ["Demir Kapı", "Kaçkar Dağı", "Uludağ", "Erciyes Dağı"],
+                answer: 1
+            },
+            {
+                category: "Coğrafya",
+                question: "Akdeniz iklimini Türkiye'de hangi bölge yaşar?",
+                options: ["Karadeniz kıyıları", "Ege ve Akdeniz bölgeleri", "İç Anadolu", "Doğu Anadolu"],
+                answer: 1
+            },
+            {
+                category: "Coğrafya",
+                question: "Türkiye'nin en büyük gölü hangisidir?",
+                options: ["Van Gölü", "Tuz Gölü", "Eğirdir Gölü", "Büyükçekmece Gölü"],
+                answer: 0
+            },
+            {
+                category: "Coğrafya",
+                question: "Anadolu coğrafyası bakımından hangi bölge en fazla tarımsal üretim yapar?",
+                options: ["Doğu Anadolu", "Ege Bölgesi", "Karadeniz Bölgesi", "İç Anadolu"],
+                answer: 1
+            },
+            {
+                category: "Coğrafya",
+                question: "Türkiye denizden kaç kilometre uzaktadır?",
+                options: ["7200 km", "8143 km", "5000 km", "9600 km"],
+                answer: 1
+            },
+            
+            // VATANDAŞLIK
+            {
+                category: "Vatandaşlık",
+                question: "Türk Anayasası'nın kabul tarihi?",
+                options: ["7 Ocak 1924", "20 Nisan 1924", "29 Ekim 1923", "1 Kasım 1922"],
+                answer: 0
+            },
+            {
+                category: "Vatandaşlık",
+                question: "Anayasaya göre Türk vatandaşı kim olabilir?",
+                options: ["Doğum yeri Türkiye'de olan herkes", "Anayasa ve yasalara uygun olan herkes", "Türkleşmiş herkes", "İstanbul'da yaşayan herkes"],
+                answer: 1
+            },
+            {
+                category: "Vatandaşlık",
+                question: "Türkiye'de yasal seçme ve seçilmeye hak kaç yaştan itibaren vardır?",
+                options: ["18", "21", "16", "20"],
+                answer: 0
+            },
+            {
+                category: "Vatandaşlık",
+                question: "TBMM'de yasama yetkisi hangi kurulda vardır?",
+                options: ["Bakanlar Kurulu", "TBMM Meclisi", "Cumhurbaşkanlığı", "Danıştay"],
+                answer: 1
+            },
+            {
+                category: "Vatandaşlık",
+                question: "Anayasa Haksı'nın temel prensibi hangisidir?",
+                options: ["Haksızlık", "Eşitlik ve Haksızlık", "Sadece Özgürlük", "Sadece Adalet"],
+                answer: 1
+            }
+        ];
+
+        // ===== QUIZ STATE =====
+        let currentQuestion = 0;
+        let answers = new Array(questions.length).fill(-1);
+        let timer = null;
+        let timeLeft = 1800; // 30 minutes
+
+        // ===== START QUIZ =====
+        function startQuiz() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'block';
+            loadQuestion();
+            startTimer();
+        }
+
+        // ===== LOAD QUESTION =====
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            const area = document.getElementById('questionArea');
+            
+            let optionsHtml = '';
+            const letters = ['A', 'B', 'C', 'D', 'E'];
+            q.options.forEach((opt, i) => {
+                let cls = '';
+                if (answers[currentQuestion] === i) cls = 'selected';
+                const isAnswered = answers[currentQuestion] !== -1;
+                optionsHtml += `
+                    <button class="option-btn ${cls}" onclick="selectAnswer(${i})" id="opt_${i}" ${isAnswered ? 'disabled' : ''}>
+                        <span class="option-letter">${letters[i]}</span>
+                        <span>${opt}</span>
+                    </button>
+                `;
+            });
+            
+            area.innerHTML = `
+                <div class="question-card">
+                    <span class="question-category">${q.category}</span>
+                    <span class="question-number">Soru ${currentQuestion + 1}/${questions.length}</span>
+                    <div class="question-text">${q.question}</div>
+                    <div class="options-grid">${optionsHtml}</div>
+                </div>
+            `;
+            
+            updateProgress();
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            document.getElementById('nextBtn').textContent = currentQuestion === questions.length - 1 ? 'Bitir →' : 'Sonraki →';
+        }
+
+        // ===== SELECT ANSWER =====
+        function selectAnswer(index) {
+            answers[currentQuestion] = index;
+            loadQuestion();
+        }
+
+        // ===== NAVIGATION =====
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        // ===== TIMER =====
+        function startTimer() {
+            timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    finishQuiz();
+                }
+            }, 1000);
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // ===== UPDATE PROGRESS =====
+        function updateProgress() {
+            document.getElementById('progressCurrent').textContent = currentQuestion + 1;
+            document.getElementById('progressCorrect').textContent = answers.filter(a => a !== -1 && questions[a].answer === a).length;
+            document.getElementById('progressWrong').textContent = answers.filter(a => a !== -1 && questions[a].answer !== a).length;
+            document.getElementById('progressBlank').textContent = answers.filter(a => a === -1).length;
+            document.getElementById('progressRemaining').textContent = questions.length - currentQuestion - 1;
+            document.getElementById('progressRemaining').textContent = questions.length - currentQuestion - 1;
+        }
+
+        // ===== FINISH QUIZ =====
+        function finishQuiz() {
+            if (timer) clearInterval(timer);
+            document.getElementById('quizScreen').style.display = 'none';
+            showResults();
+        }
+
+        // ===== CALCULATE AND SHOW RESULTS =====
+        function showResults() {
+            let correct = 0, wrong = 0, blank = 0;
+            let genelKultukCorrect = 0;
+            let genelKultukTotal = 0;
+            let genelYetenekCorrect = 0;
+            let genelYetenekTotal = 0;
+            
+            const categoryStats = {};
+            
+            answers.forEach((ans, i) => {
+                const q = questions[i];
+                if (!categoryStats[q.category]) categoryStats[q.category] = { correct: 0, total: 0 };
+                categoryStats[q.category].total++;
+                
+                if (ans === -1) {
+                    blank++;
+                } else if (ans === q.answer) {
+                    correct++;
+                    categoryStats[q.category].correct++;
+                    if (['Tarih', 'Coğrafya', 'Vatandaşlık'].includes(q.category)) {
+                        genelKultukCorrect++;
+                    }
+                    genelKultukTotal += ['Tarih', 'Coğrafya', 'Vatandaşlık'].includes(q.category) ? 1 : 0;
+                    genelYetenekCorrect += ['Türkçe', 'Sözel Mantık', 'Matematik'].includes(q.category) ? 1 : 0;
+                } else {
+                    wrong++;
+                }
+            });
+            
+            // KPSS scoring system:
+            // Net = Doğru - (Yanlış / 4)
+            // Genel Yetenek: Türkçe + Matematik + Geometri + Sözel Mantık = ~57 soru
+            // Genel Kültür: Tarih + Coğrafya + Vatandaşlık + Güncel = ~60 soru
+            const genelYetenekNet = genelYetenekCorrect - (wrong * (genelYetenekTotal > 0 ? genelYetenekTotal / (genelYetenekCorrect + wrong + blank) : 0));
+            const genelKultukNet = genelKultukCorrect - Math.floor(wrong * 0.4);
+            
+            // More accurate calculation
+            let genelYetenekDo = 0, genelYetenekYan = 0, genelKultukDo = 0, genelKultukYan = 0, genelKultukBos = 0;
+            answers.forEach((ans, i) => {
+                const q = questions[i];
+                if (['Türkçe', 'Matematik', 'Sözel Mantık'].includes(q.category)) {
+                    if (ans === q.answer) genelYetenekDo++;
+                    else if (ans !== -1) genelYetenekYan++;
+                } else {
+                    genelKultukTotal++;
+                    if (ans === q.answer) genelKultukDo++;
+                    else if (ans !== -1) genelKultukYan++;
+                    else genelKultukBos++;
+                }
+            });
+            
+            const genelYetenekNet2 = genelYetenekDo - (genelYetenekYan / 4);
+            const genelKultukNet2 = genelKultukDo - (genelKultukYan / 4);
+            const toplamNet = genelYetenekNet2 + genelKultukNet2;
+            const toplamPuan = Math.round(toplamNet * (100 / Math.min(answers.length, 120)));
+            const toplamSkor = Math.round(toplamNet);
+            
+            // Update result display
+            document.getElementById('resCorrect').textContent = correct;
+            document.getElementById('resWrong').textContent = wrong;
+            document.getElementById('resBlank').textContent = blank;
+            document.getElementById('resNet').textContent = toplamNet.toFixed(2);
+            document.getElementById('resPoints').textContent = toplamSkor;
+            document.getElementById('resGenelKultuk').textContent = Math.round(genelKultukNet2).toFixed(1);
+            
+            let message = '';
+            if (toplamSkor >= 80) message = '👑 Çok Başarılı! Bu puanla kamu kurumlarına girebilirsiniz.';
+            else if (toplamSkor >= 60) message = '🌟 İyi Başarı! Konuşulabilir bir puan.';
+            else if (toplamSkor >= 40) message = '📈 Orta Başarı. Daha Çalışmalı!';
+            else if (toplamSkor >= 20) message = '📚 Gelişim Aşamasında. Zorlanmaya devamin!';
+            else message = '💪 Zorlanmaya Devam Et! Tekrar edip daha iyi sonuç al!';
+            
+            document.getElementById('resMessage').textContent = message;
+            
+            // Breakdown
+            let breakdownHtml = '';
+            for (const [cat, stats] of Object.entries(categoryStats)) {
+                const pct = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
+                breakdownHtml += `
+                    <div class="breakdown-item">
+                        <span>${cat}</span>
+                        <span>${stats.correct}/${stats.total} doğru (%${pct})</span>
+                    </div>
+                `;
+            }
+            document.getElementById('breakdownArea').innerHTML = breakdownHtml;
+            
+            document.getElementById('resultSection').classList.add('active');
+        }
+
+        // ===== RETRY =====
+        function retryQuiz() {
+            currentQuestion = 0;
+            answers = new Array(questions.length).fill(-1);
+            timeLeft = 1800;
+            document.getElementById('resultSection').classList.remove('active');
+            startQuiz();
+        }
+
+        // ===== KEYBOARD NAV =====
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('quizScreen').style.display !== 'none') {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextQuestion();
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevQuestion();
+                if (e.key >= '1' && e.key <= '5') selectAnswer(parseInt(e.key) - 1);
+            }
+        });
+    
+</script>
 </body>
 </html>
