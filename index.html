@@ -28,6 +28,7 @@
                 <li><a href="#soru-tipleri">Soru Türleri</a></li>
                 <li><a href="#calisma-planı">Çalışma Planı</a></li>
                 <li><a href="#puan-hesaplama">Puan Hesaplama</a></li>
+                <li><a href="test.html">📝 Deneme Sınavı</a></li>
                 <li><a href="#kaynaklar">Kaynaklar</a></li>
             </ul>
         </div>
@@ -501,6 +502,18 @@
         </div>
     </section>
 
+    <!-- Deneme Sınavı CTA -->
+    <section class="section" id="deneme-cta">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-badge">📝 SİNAMAYA HAZIR MISIN?</div>
+                <h2 class="cta-title">KPSS Ortaöğretim Deneme Sınavı</h2>
+                <p class="cta-desc">20 soruluk KPSS Ortaöğretim sınavına benzer sorulardan oluşan deneme sınavını çözmeyi dene. Doğru, yanlış, boş soruların ve net puanın otomatik hesaplanır.</p>
+                <a href="test.html" class="btn btn-primary" style="font-size: 1.15rem; padding: 16px 48px;">📝 Deneme Sınavını Başlat</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Puan Hesaplama -->
     <section class="section section-alt" id="puan-hesaplama">
         <div class="container">
@@ -539,7 +552,23 @@
                         <div class="result-score" id="result-score">-</div>
                         <div class="result-label" id="result-label">Tahmini Puan</div>
                     </div>
-                    <p class="calc-note">* KPSS'de her doğru cevaba 5 puan, her yanlışa 1 puan düşer (net = Doğru - Yanlış/4). Toplam puan 120 üzerinden hesaplanır.</p>
+                    <div class="calc-detail" id="calc-detail" style="display:none;">
+                        <div class="detail-breakdown">
+                            <div class="detail-line">
+                                <span>Genel Yetenek Neti:</span>
+                                <span id="det-yetenek-net">-</span>
+                            </div>
+                            <div class="detail-line">
+                                <span>Genel Kültük Neti:</span>
+                                <span id="det-kultur-net">-</span>
+                            </div>
+                            <div class="detail-line">
+                                <span>Toplam Net:</span>
+                                <span id="det-toplam-net">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="calc-note">* KPSS'de her doğru cevaba 5 puan, her yanlışa 1 puan düşer (net = Doğru - Yanlış/4). Genel Yetenek 60 soru + Genel Kültür 60 soru = 120 üzerinden değerlendirilir.</p>
                 </div>
             </div>
         </div>

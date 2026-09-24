@@ -85,6 +85,18 @@
             else label = 'Zorlanmaya Devam Et!';
 
             resultLabel.textContent = label;
+            
+            // Show detail breakdown
+            var detYetenek = document.getElementById('det-yetenek-net');
+            var detKultur = document.getElementById('det-kultur-net');
+            var detToplam = document.getElementById('det-toplam-net');
+            var detSection = document.getElementById('calc-detail');
+            if (detYetenek && detKultur && detToplam && detSection) {
+                detYetenek.textContent = netYetenek.toFixed(2);
+                detKultur.textContent = netKultur.toFixed(2);
+                detToplam.textContent = toplamNet.toFixed(2);
+                detSection.style.display = 'block';
+            }
         }, 200);
     };
 
