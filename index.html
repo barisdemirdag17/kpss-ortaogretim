@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPSS Ortaöğretim - Sınav Rehberi ve Konu Dağılımları</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📚%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigasyon -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#anasayfa" class="nav-logo">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">KPSS Ortaöğretim</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Menü">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#anasayfa">Ana Sayfa</a></li>
+                <li><a href="#konular">Konu Dağılımı</a></li>
+                <li><a href="#soru-tipleri">Soru Türleri</a></li>
+                <li><a href="#calisma-planı">Çalışma Planı</a></li>
+                <li><a href="#puan-hesaplama">Puan Hesaplama</a></li>
+                <li><a href="#kaynaklar">Kaynaklar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Ana Sayfa -->
+    <section class="hero" id="anasayfa">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">ÖSYM Resmi Sınav</div>
+            <h1 class="hero-title">KPSS Ortaöğretim</h1>
+            <p class="hero-subtitle">Kamu Personel Seçme Sınavı · Ortaöğretim Düzeyi</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">120</span>
+                    <span class="stat-label">Toplam Soru</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">130</span>
+                    <span class="stat-label">Dakika</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Ana Bölüm</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">Ders</span>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <a href="#konular" class="btn btn-primary">Konu Dağılımları →</a>
+                <a href="#calisma-planı" class="btn btn-secondary">Çalışma Planı</a>
+            </div>
+            <p class="hero-note">Çift yıllarda (2022, 2024, 2026...) ÖSYM tarafından düzenlenir</p>
+        </div>
+    </section>
+
+    <!-- Konu Dağılımı -->
+    <section class="section" id="konular">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">📋 Konu Dağılımları</span>
+                <h2 class="section-title">Sınava Girecek Konular ve Soru Sayıları</h2>
+                <p class="section-desc">Her dersten kaç soru geldiği, alt konuları ve ağırlık dağılımı</p>
+            </div>
+
+            <!-- Genel Yetenek -->
+            <div class="card category-card">
+                <div class="card-header category-header-yetenek">
+                    <div class="category-icon">🧠</div>
+                    <div class="category-info">
+                        <h3>Genel Yetenek Testi</h3>
+                        <span class="category-subtitle">60 Soru · 65 Dakika</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="subject-grid">
+                        <!-- Türkçe -->
+                        <div class="subject-card" onclick="toggleSubject('turkce')">
+                            <div class="subject-header">
+                                <span class="subject-name">Türkçe</span>
+                                <span class="subject-question-count">30 Soru</span>
+                            </div>
+                            <div class="subject-details" id="turkce-detail">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Paragraf Anlamı</span>
+                                        <span class="detail-count">15 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:50%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Sözel Mantık</span>
+                                        <span class="detail-count">4 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:13%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Sözcükte Anlam</span>
+                                        <span class="detail-count">2 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:7%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Cümlede Anlam</span>
+                                        <span class="detail-count">2 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:7%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Dil Bilgisi</span>
+                                        <span class="detail-count">2 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:7%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Ses Bilgisi</span>
+                                        <span class="detail-count">1 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:3%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Anlatım Bozuklukları</span>
+                                        <span class="detail-count">1 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:3%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Yazım Yanlışları</span>
+                                        <span class="detail-count">1 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:3%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Noktalama İşaretleri</span>
+                                        <span class="detail-count">1 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:3%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Matematik -->
+                        <div class="subject-card" onclick="toggleSubject('matematik')">
+                            <div class="subject-header">
+                                <span class="subject-name">Matematik</span>
+                                <span class="subject-question-count">27 Soru</span>
+                            </div>
+                            <div class="subject-details" id="matematik-detail">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Problemler</span>
+                                        <span class="detail-count">8 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:30%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Matematiksel İlişkiler</span>
+                                        <span class="detail-count">6 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:22%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Sayısal Mantık</span>
+                                        <span class="detail-count">4 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:15%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Temel Kavramlar</span>
+                                        <span class="detail-count">2 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:7%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Rasyonel Sayılar</span>
+                                        <span class="detail-count">2 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:7%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Köklü Sayılar</span>
+                                        <span class="detail-count">1 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:4%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Üslü Sayılar</span>
+                                        <span class="detail-count">1 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:4%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Tablo/Grafik Yorumlama</span>
+                                        <span class="detail-count">3 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:11%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Temel Geometri</span>
+                                        <span class="detail-count">3 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:11%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Geometri -->
+                        <div class="subject-card">
+                            <div class="subject-header">
+                                <span class="subject-name">Geometri</span>
+                                <span class="subject-question-count">3 Soru</span>
+                            </div>
+                            <div class="subject-body-text">
+                                <p>Üçgenler, Dörtgenler, Çember ve Çokgenler temel konulardır.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Genel Kültür -->
+            <div class="card category-card">
+                <div class="card-header category-header-kultur">
+                    <div class="category-icon">🌍</div>
+                    <div class="category-info">
+                        <h3>Genel Kültür Testi</h3>
+                        <span class="category-subtitle">60 Soru · 65 Dakika</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="subject-grid">
+                        <!-- Tarih -->
+                        <div class="subject-card" onclick="toggleSubject('tarih')">
+                            <div class="subject-header">
+                                <span class="subject-name">📜 Tarih</span>
+                                <span class="subject-question-count">27 Soru</span>
+                            </div>
+                            <div class="subject-details" id="tarih-detail">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Osmanlı Devleti</span>
+                                        <span class="detail-count">9 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:33%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Atatürk İlke ve İnkılapları</span>
+                                        <span class="detail-count">9 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:33%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Kurtuluş Savaşı</span>
+                                        <span class="detail-count">3 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:11%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Çağdaş Türk ve Dünya Tarihi</span>
+                                        <span class="detail-count">3 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:11%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Türk-İslam Devletleri</span>
+                                        <span class="detail-count">2 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:7%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">İlk Türk Devletleri</span>
+                                        <span class="detail-count">1 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:4%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Coğrafya -->
+                        <div class="subject-card" onclick="toggleSubject('coğrafya')">
+                            <div class="subject-header">
+                                <span class="subject-name">🗺️ Coğrafya</span>
+                                <span class="subject-question-count">18 Soru</span>
+                            </div>
+                            <div class="subject-details" id="coğrafya-detail">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Türkiye'nin Ekonomik Özellikleri</span>
+                                        <span class="detail-count">8 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:44%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Türkiye'nin Fiziki Özellikleri</span>
+                                        <span class="detail-count">4 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:22%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Türkiye'nin Beşeri Özellikleri</span>
+                                        <span class="detail-count">3 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:17%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">İklim ve Bitki Örtüsü</span>
+                                        <span class="detail-count">2 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:11%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Türkiye'nin Coğrafi Konumu</span>
+                                        <span class="detail-count">1 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:6%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vatandaşlık -->
+                        <div class="subject-card" onclick="toggleSubject('vatandaslik')">
+                            <div class="subject-header">
+                                <span class="subject-name">⚖️ Vatandaşlık</span>
+                                <span class="subject-question-count">9 Soru</span>
+                            </div>
+                            <div class="subject-details" id="vatandaslik-detail">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Yasama, Yürütme, Yargı</span>
+                                        <span class="detail-count">4 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:44%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">Temel Hukuk Kavramları</span>
+                                        <span class="detail-count">3 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:33%"></div></div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-subject">İdare Hukuku</span>
+                                        <span class="detail-count">2 soru</span>
+                                        <div class="detail-bar"><div class="detail-fill" style="width:22%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Güncel Bilgiler -->
+                        <div class="subject-card">
+                            <div class="subject-header">
+                                <span class="subject-name">📰 Güncel Bilgiler</span>
+                                <span class="subject-question-count">6 Soru</span>
+                            </div>
+                            <div class="subject-body-text">
+                                <p>Uluslararası kuruluşlar, edebiyat, tarih, biyografi, mimari, sanat ve güncel gelişmeler.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soru Türleri -->
+    <section class="section section-alt" id="soru-tipleri">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">❓ Soru Türleri</span>
+                <h2 class="section-title">Sorular Nasıl Sorulur?</h2>
+                <p class="section-desc">Her dersin soru türleri ve örnek odak alanları</p>
+            </div>
+
+            <div class="question-types-grid">
+                <div class="type-card">
+                    <div class="type-icon">📖</div>
+                    <h4>Türkçe - Paragraf</h4>
+                    <ul>
+                        <li>Paragraflarda anlam (14-16 soru)</li>
+                        <li>Paragraf anlatım biçimleri</li>
+                        <li>Yazarın düşünceleri</li>
+                        <li>Bağlam anlamlandırma</li>
+                        <li>Paragraf akışkanlığı</li>
+                    </ul>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">🧮</div>
+                    <h4>Matematik - Problemler</h4>
+                    <ul>
+                        <li>Yaş problemleri</li>
+                        <li>Karışım problemleri</li>
+                        <li>Hareket problemleri</li>
+                        <li>Yüzde-Kâr-Zarar</li>
+                        <li>Faiz hesaplamaları</li>
+                    </ul>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">🔢</div>
+                    <h4>Sayısal Mantık</h4>
+                    <ul>
+                        <li>Sıra ve sırama</li>
+                        <li>Tablo okuma</li>
+                        <li>Mantık bulmacaları</li>
+                        <li>Veri yorumlama</li>
+                        <li>Şart-ifade</li>
+                    </ul>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">🏛️</div>
+                    <h4>Tarih</h4>
+                    <ul>
+                        <li>Osmanlı devletçiliği</li>
+                        <li>Atatürk reformları</li>
+                        <li>Kurtuluş Savaşı aşamaları</li>
+                        <li>İnkılaptan sonraki yaşam</li>
+                        <li>Dünya tarihi olaylar</li>
+                    </ul>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">🌊</div>
+                    <h4>Coğrafya</h4>
+                    <ul>
+                        <li>Harita okuma</li>
+                        <li>İklim bölgeleri</li>
+                        <li>Tarım ve ürün çeşitleri</li>
+                        <li>Sanayi ve enerji</li>
+                        <li>Nüfus ve göç</li>
+                    </ul>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">📜</div>
+                    <h4>Vatandaşlık</h4>
+                    <ul>
+                        <li>Anayasa hükümleri</li>
+                        <li>Temel haklar ve özgürlükler</li>
+                        <li>Yasama süreci</li>
+                        <li>Yürütme organları</li>
+                        <li>İdare hukuku</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Çalışma Planı -->
+    <section class="section" id="calisma-planı">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">📅 Stratejik Çalışma Planı</span>
+                <h2 class="section-title">Başarıya Giden Yol</h2>
+                <p class="section-desc">Sınav verimliliği için optimize çalışma önerileri</p>
+            </div>
+
+            <div class="plan-grid">
+                <div class="plan-card">
+                    <div class="plan-phase">FAZ 1</div>
+                    <h3>Temel Atıf</h3>
+                    <ul>
+                        <li>Genel Yetenek: Türkçe %50 - Matematik %40</li>
+                        <li>Genel Kültür: Tarih %40 - Coğrafya %25</li>
+                        <li>Her gün en az 2-3 saat çalışma</li>
+                        <li>Temel kavramları anlamaya odaklan</li>
+                    </ul>
+                </div>
+                <div class="plan-card">
+                    <div class="plan-phase">FAZ 2</div>
+                    <h3>Güçlendirme</h3>
+                    <ul>
+                        <li>Zayıf olduğun derslere ağırlık ver</li>
+                        <li>Çıkmış soruları çözümle</li>
+                        <li>Zaman aşımı koşullu deneme çöz</li>
+                        <li>Sayısal Mantık ve Problemler yoğunlaştır</li>
+                    </ul>
+                </div>
+                <div class="plan-card">
+                    <div class="plan-phase">FAZ 3</div>
+                    <h3>Final</h3>
+                    <ul>
+                        <li>Gerçek sınav koşullu deneme çöz</li>
+                        <li>Tüm konuları tekrar et</li>
+                        <li>Hız ve doğruluk antrenmanı</li>
+                        <li>Kritik güncel bilgileri güncelle</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="strategy-box">
+                <h3>💡 Önemli Stratejik Tavsiyeler</h3>
+                <div class="strategy-items">
+                    <div class="strategy-item">
+                        <span class="strategy-icon">🎯</span>
+                        <div>
+                            <strong>Problemler ve Sayısal Mantık</strong> - Matematikteki 12 soru bu alanlardan geliyor. Bu konularda güçlü olursan 20+ puan farkı yaratırsın.
+                        </div>
+                    </div>
+                    <div class="strategy-item">
+                        <span class="strategy-icon">📝</span>
+                        <div>
+                            <strong>Paragraf Ustalığı</strong> - Türkçe'deki 15 paragraf sorusu toplam soru sayısının %12.5'ini oluşturur. Günlük deneme çözümü şart.
+                        </div>
+                    </div>
+                    <div class="strategy-item">
+                        <span class="strategy-icon">🏛️</span>
+                        <div>
+                            <strong>Tarih Ağırlığı</strong> - Osmanlı Devleti (9 soru) ve Atatürk İlke ve İnkılapları (9 soru) toplam 18 soru = Genel Kültürün %30'u. Bu konular vazgeçilmez.
+                        </div>
+                    </div>
+                    <div class="strategy-item">
+                        <span class="strategy-icon">⏱️</span>
+                        <div>
+                            <strong>Zaman Yönetimi</strong> - 120 soru 130 dakikada. Ortalama ~1 dakika/soru. Kolay soruları atlatma, zor sorulara fazla vakit harcama.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Puan Hesaplama -->
+    <section class="section section-alt" id="puan-hesaplama">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">📊 Puan Hesaplama</span>
+                <h2 class="section-title">Sınav Puanını Tahmin Et</h2>
+                <p class="section-desc">Doğru ve yanlış cevap sayısına göre tahmini puanını hesapla</p>
+            </div>
+
+            <div class="calculator-container">
+                <div class="calculator">
+                    <div class="calc-section">
+                        <h4>Genel Yetenek (60 soru)</h4>
+                        <div class="calc-input">
+                            <label>Doğru Cevap Sayısı:</label>
+                            <input type="number" id="dogru-yetenek" min="0" max="60" value="0">
+                        </div>
+                        <div class="calc-input">
+                            <label>Yanlış Cevap Sayısı:</label>
+                            <input type="number" id="yanlis-yetenek" min="0" max="60" value="0">
+                        </div>
+                    </div>
+                    <div class="calc-section">
+                        <h4>Genel Kültür (60 soru)</h4>
+                        <div class="calc-input">
+                            <label>Doğru Cevap Sayısı:</label>
+                            <input type="number" id="dogru-kultur" min="0" max="60" value="0">
+                        </div>
+                        <div class="calc-input">
+                            <label>Yanlış Cevap Sayısı:</label>
+                            <input type="number" id="yanlis-kultur" min="0" max="60" value="0">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-full" onclick="hesaplaPuan()">Hesapla</button>
+                    <div class="calc-result" id="calc-result">
+                        <div class="result-score" id="result-score">-</div>
+                        <div class="result-label" id="result-label">Tahmini Puan</div>
+                    </div>
+                    <p class="calc-note">* KPSS'de her doğru cevaba 5 puan, her yanlışa 1 puan düşer (net = Doğru - Yanlış/4). Toplam puan 120 üzerinden hesaplanır.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kaynaklar -->
+    <section class="section" id="kaynaklar">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">📚 Faydalı Kaynaklar</span>
+                <h2 class="section-title">Hazırlık İçin Kaynaklar</h2>
+                <p class="section-desc">ÖSYM resmi kaynaklar ve önerilen çalışma materyalleri</p>
+            </div>
+
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">🏛️</div>
+                    <h4>ÖSYM Resmi</h4>
+                    <p>ÖSYM resmi websitesinden geçmiş sınav soruları ve konuları indirebilirsiniz.</p>
+                    <a href="https://www.osym.gov.tr" target="_blank" class="resource-link">osym.gov.tr →</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">📄</div>
+                    <h4>Çıkmış Sorular</h4>
+                    <p>Önceki yılların çıkmış sorularını çözerek sınav akışını kavrayabilirsiniz.</p>
+                    <a href="#" class="resource-link">KPSS Ortaöğretim Çıkmış Sorular →</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">📖</div>
+                    <h4>Deneme Sınavları</h4>
+                    <p>Zaman aşımı deneme sınavları ile gerçek senaryo antrenmanı yapabilirsiniz.</p>
+                    <a href="#" class="resource-link">Deneme Sınavları →</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">📈</div>
+                    <h4>Puan Hesaplama</h4>
+                    <p>Doğru ve yanlış cevaplarınıza göre puanınızı hesaplayın ve hedef belirleyin.</p>
+                    <a href="#" class="resource-link">Puan Hesaplama →</a>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>📌 Sınav Hakkında Bilmen Gerekenler</h4>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>Kimler Girebilir?</strong>
+                        <p>Lise mezunları ve sınavın iki yıllık geçerlilik süresi içerisinde mezun olabilecekler.</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>Geçerlilik</strong>
+                        <p>Puan 2 yıl geçerlidir. İki yılda bir düzenlenir (çift yıllar).</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>Sınav Süresi</strong>
+                        <p>130 dakika. 120 soru toplamında Gen Yetenek + Gen Kültür.</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>Dil</strong>
+                        <p>Türkçe olarak uygulanır.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-logo">📚 KPSS Ortaöğretim</span>
+                    <p>Amaç: KPSS Ortaöğretim sınavına hazırlanan adaylara doğru ve güncel bilgi sağlamak.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#anasayfa">Ana Sayfa</a>
+                    <a href="#konular">Konular</a>
+                    <a href="#calisma-planı">Çalışma Planı</a>
+                    <a href="#kaynaklar">Kaynaklar</a>
+                </div>
+                <div class="footer-note">
+                    <p>Bilgiler ÖSYM kaynaklarından derlenmiştir. Güncellik için lütfen resmi sitesini kontrol edin.</p>
+                    <p>&copy; 2026 KPSS Ortaöğretim Rehberi</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
